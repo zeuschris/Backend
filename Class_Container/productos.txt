@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "boligrafo parker",
+    "price": 7500,
+    "thumbnail": "https://medias.musimundo.com/medias/00476007-144936-144936-01-144936-01.jpg"
+  },
+  {
+    "id": 2,
+    "title": "mochila jeansport",
+    "price": 10200,
+    "thumbnail": "https://medias.musimundo.com/medias/00558060-146480-146480-01-146480-01.jpg"
+  },
+  {
+    "id": 3,
+    "title": "cuadro de audrey",
+    "price": 20500,
+    "thumbnail": "https://medias.musimundo.com/medias/00199039-135728-135728-01-135728-01.jpg"
+  }
+]

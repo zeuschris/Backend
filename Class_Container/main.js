@@ -1,4 +1,5 @@
-const Contenedor = require("./Contenedor");
+const Contenedor = require("./contenedor");
+
 let contenedor = new Contenedor("productos.txt")
 
 const producto1 = {
@@ -25,10 +26,7 @@ fns = async () => {
     console.log( await contenedor.save(producto2))
     console.log( await contenedor.save(producto3))
 
-    console.log( await contenedor.getAll())
-    console.log( await contenedor.getById(3))
-    console.log( await contenedor.deleteById(2))
-    console.log( await contenedor.deleteAll())
 }
 
 fns()
+

@@ -55,7 +55,7 @@ class Contenedor {
     }catch {(console.log)}
 }
 
-    getById(id) = async () => {
+    getById = async (id) => {
         try {
             // buscar que el archivo exista
             if(fs.existsSync(this.archivo)){
@@ -70,12 +70,10 @@ class Contenedor {
                     return dataId;
                 }
             }
-        } catch (error) {
-            console.log(`Error buscando el producto con el id: ${error.message}`);
-    }
+        } catch (error) {console.log(`Error buscando el producto con el id: ${error.message}`)}
 }
 
-    deleteById(id) = async () => {
+    deleteById = async (id) => {
         // buscar que el archivo exista
         try {
           if(fs.existsSync(this.archivo)){
@@ -98,7 +96,7 @@ class Contenedor {
     } catch{console.log(`Ocurrio un error eliminando el producto`)}
 }
     
-    deleteAll() = async () => {
+    deleteAll = async () => {
         try {
             // buscar que el archivo exista
             let nuevoArray = [];
