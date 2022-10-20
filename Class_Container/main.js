@@ -1,6 +1,6 @@
 const Contenedor = require("./contenedor");
 
-let containerProducts = new Contenedor("./productos.json")
+let containerProducts = new Contenedor("productos.json")
 
 let producto1 = {
     title: "boligrafo parker",
@@ -22,9 +22,12 @@ let producto3 = {
 
 fns = async () => {
 
-    console.log( await containerProducts.save(producto1))
-    console.log( await containerProducts.save(producto2))
-    console.log( await containerProducts.save(producto3))
+    // console.log( await containerProducts.save(producto1))
+    // console.log( await containerProducts.save(producto2))
+    // console.log( await containerProducts.save(producto3))
+    // console.log( await containerProducts.getAll())
+    // console.log( await containerProducts.deleteById(3))
+    console.log( await containerProducts.deleteAll())
 }
 
 fns()

@@ -31,13 +31,9 @@ class Contenedor{
         }
     
         }else{
-        //generamos un producto con id 1 ya que es la creacion del archivo
         let newProduct={
         id:1,
-        title: producto.title,
-        price: producto.price,
-        thumbnail: producto.thumbnail
-        //... producto utilizamos el spread operator para copiar la informacion dentro del nuevo producto
+        ...producto
         }
          await fs.promises.writeFile(this.archivo,JSON.stringify([newProduct],null,2));
         return 1;
@@ -115,7 +111,7 @@ async deleteAll() {
         // chequeo si existe el documento
         let nuevoArray = [];
         console.log(`Borrando datos...`);
-        await this.writeFile(this.archivo, nuevoArray);
+        await fs.promises.writeFile(this.archivo, nuevoArray);
         console.log(
             `Se borraron todos los datos del archivo ${this.archivo}`
         );
