@@ -72,8 +72,8 @@ class Contenedor {
             }
         } catch (error) {
             console.log(`Error buscando el producto con el id: ${error.message}`);
-        }
     }
+}
 
     deleteById(id) = async () => {
         // buscar que el archivo exista
@@ -92,27 +92,21 @@ class Contenedor {
                 } else {
                     throw new Error(
                         `No se encontro el producto con el id ${id}`
-                    );
-                }
+                );
             }
-        } catch{console.log(`Ocurrio un error eliminando el producto`)}
-    }
+        }
+    } catch{console.log(`Ocurrio un error eliminando el producto`)}
+}
     
     deleteAll() = async () => {
         try {
             // buscar que el archivo exista
             let nuevoArray = [];
-            console.log(`Borrando datos...`);
+            console.log('Borrando productos');
             await this.writeFile(this.archivo, nuevoArray);
-            console.log(
-                `Se borraron todos los datos del archivo ${this.archivo}`
-            );
-        } catch (error) {
-            console.log(
-                `Ocurrio un error eliminando los datos: ${error.message}`
-            );
-        }
-    }
+            console.log(`Se borraron todos los productos del archivo ${this.archivo}`);
+    } catch{console.log('Ha ocurrido un error eliminando los productos')}
+}
 
   
 

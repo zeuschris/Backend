@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "title": "Boligrafo Parker",
-    "price": 7000,
-    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_809687-MLA51982922210_102022-F.webp"
-  }
-]
