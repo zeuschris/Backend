@@ -25,9 +25,10 @@ fns = async () => {
     // console.log( await containerProducts.save(producto1))
     // console.log( await containerProducts.save(producto2))
     // console.log( await containerProducts.save(producto3))
+    // console.log( await containerProducts.getById(2))
     // console.log( await containerProducts.getAll())
-    // console.log( await containerProducts.deleteById(3))
-    console.log( await containerProducts.deleteAll())
+    console.log( await containerProducts.deleteById(3))
+    // console.log( await containerProducts.deleteAll())
 }
 
 fns()

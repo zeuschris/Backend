@@ -62,15 +62,15 @@ class Contenedor{
       try {
           // chequeo que exista el documento
           if(fs.existsSync(this.archivo)){
-            let info= await fs.promises.readFile(this.archivo, 'utf8');
+            let info= await fs.readFileSync(this.archivo);
           // uso filter para buscar el producto con el id que queramos
-              const dataId = info.filter(item => item.id === id);
-              if (dataId.length === 0) {
+              const dataId = info.find(item => item.id === id);
+              if (dataId === 0) {
               throw new Error(
                       "No se encontro un producto con el id solicitado"
                   );
               } else {
-                  console.log(`Producto con id ${id} encontrado:\n`, dataId);
+                  console.log(`Producto con id ${id} encontrado`)
                   return dataId;
               }
           }
@@ -83,15 +83,15 @@ class Contenedor{
     // chequeo si existe el documento
     try {
       if(fs.existsSync(this.archivo)){
-        let info= await fs.promises.readFile(this.archivo, 'utf8');
+        let info= await fs.promises.readFile(this.archivo);
             // verifico que exista el id 
             console.log(`Buscando producto con el id solicitado...`);
             if (info.some(item => item.id === id)) {
-                const data = await this.readFile(this.archivo);
+                const data = await fs.promises.readFile(this.archivo);
                 // elimino producto
                 console.log(`Eliminando producto con id solicitado...`);
                 const datos = data.filter(item => item.id !== id);
-                this.writeFile(this.archivo, datos);
+                fs.writeFile(this.archivo, datos);
                 console.log(`Producto con el id ${id} eliminado`);
             } else {
                 throw new Error(
