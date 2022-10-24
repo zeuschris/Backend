@@ -91,7 +91,7 @@ class Contenedor{
                 // elimino producto
                 console.log(`Eliminando producto con id solicitado...`);
                 const datos = data.filter(item => item.id !== id);
-                fs.writeFile(this.archivo, datos);
+                await fs.writeFile(this.archivo, datos);
                 console.log(`Producto con el id ${id} eliminado`);
             } else {
                 throw new Error(
@@ -109,9 +109,8 @@ class Contenedor{
 async deleteAll() {
     try {
         // chequeo si existe el documento
-        let nuevoArray = [];
         console.log(`Borrando datos...`);
-        await fs.promises.writeFile(this.archivo, nuevoArray);
+        await fs.promises.writeFile(this.archivo, "[]");
         console.log(
             `Se borraron todos los datos del archivo ${this.archivo}`
         );
