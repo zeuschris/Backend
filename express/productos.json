@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "boligrafo parker",
+    "price": 7500,
+    "thumbnail": "https://tiotomar.vtexassets.com/arquivos/ids/169166-1200-1200?v=637937565427570000&width=1200&height=1200&aspect=true"
+  },
+  {
+    "id": 2,
+    "title": "mochila adidas",
+    "price": 10200,
+    "thumbnail": "https://contents.mediadecathlon.com/p2330145/k$5ae96b90baf3d8757b639c255ce3864c/sq/250x250/Mochilas-Adidas.jpg"
+  },
+  {
+    "id": 3,
+    "title": "zapatillas adidas duramo",
+    "price": 24500,
+    "thumbnail": "https://sportline.vtexassets.com/arquivos/ids/611860-1600-auto?v=637843389932970000&width=1600&height=auto&aspect=true"
+  }
+]
