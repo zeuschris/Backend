@@ -46,7 +46,7 @@ app.get('/productos', (req, res) => {
     viewProducts()
 })
 
-app.get('/productorandom', (req,res) => {
+app.get('/productoRandom', (req,res) => {
     const index = async () => {
         try{
             const productsJSON = await productos.getAll()
@@ -57,7 +57,7 @@ app.get('/productorandom', (req,res) => {
                 <div>
                     <h2>Name: ${producto?.title}</h2>
                     <p>ID: ${producto?.id}</p>
-                    [0]       <img src= "${producto?.thumbnail}" style="margin:10px 0" height="150px" alt="${producto?.title}">
+                    <img src= "${producto?.thumbnail}" style="margin:10px 0" height="150px" alt="${producto?.title}">
                     <b style=display:block;>Price: $${producto?.price}</b>
                 </div>
             

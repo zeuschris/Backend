@@ -7,7 +7,6 @@ class Contenedor{
     
     save=async(producto)=>{
        try {
-        //generar el archivo
         if(fs.existsSync(this.archivo)){
            let productos= await this.getAll();
            if( productos.length>0){
@@ -60,10 +59,8 @@ class Contenedor{
 
     async getById(id) {
       try {
-          // chequeo que exista el documento
           if(fs.existsSync(this.archivo)){
             let info= await fs.readFileSync(this.archivo);
-          // uso filter para buscar el producto con el id que queramos
               const dataId = info.find(item => item.id === id);
               if (dataId === 0) {
               throw new Error(
@@ -80,15 +77,12 @@ class Contenedor{
   }
 
   async deleteById(id) {
-    // chequeo si existe el documento
     try {
       if(fs.existsSync(this.archivo)){
         let info= await fs.promises.readFile(this.archivo);
-            // verifico que exista el id 
             console.log(`Buscando producto con el id solicitado...`);
             if (info.some(item => item.id === id)) {
                 const data = await fs.promises.readFile(this.archivo);
-                // elimino producto
                 console.log(`Eliminando producto con id solicitado...`);
                 const datos = data.filter(item => item.id !== id);
                 await fs.writeFile(this.archivo, datos);
@@ -108,7 +102,6 @@ class Contenedor{
 
 async deleteAll() {
     try {
-        // chequeo si existe el documento
         console.log(`Borrando datos...`);
         await fs.promises.writeFile(this.archivo, "[]");
         console.log(
