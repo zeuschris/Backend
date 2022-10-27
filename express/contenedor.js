@@ -60,7 +60,7 @@ class Contenedor{
     async getById(id) {
       try {
           if(fs.existsSync(this.archivo)){
-            let info= await fs.readFileSync(this.archivo);
+            let info = await this.getAll();
               const dataId = info.find(item => item.id === id);
               if (dataId === 0) {
               throw new Error(

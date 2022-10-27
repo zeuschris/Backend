@@ -46,7 +46,7 @@ app.get('/productos', (req, res) => {
     viewProducts()
 })
 
-app.get('/productoRandom', (req,res) => {
+app.get('/productorandom', (req,res) => {
     const index = async () => {
         try{
             const productsJSON = await productos.getAll()
