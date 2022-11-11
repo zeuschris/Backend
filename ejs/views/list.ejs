@@ -18,14 +18,14 @@
     <tr>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
-        <th scope="col">Thumbnail</th>
+        <th scope="col">Image</th>
     </tr>
 </thead>
     <% products.forEach((product) => { %>
     <tr>
         <td><%= product.name %></td>
         <td><%= product.price %></td>
-        <td><img src='<%=product.thumbnail %>'></td>
+        <td><img src='<%=product.thumbnail %>' alt="<%= product.name %>"></td>
     </tr>
         <% }) %>
 </table>

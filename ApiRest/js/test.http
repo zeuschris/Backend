@@ -1,0 +1,25 @@
+# GET http://localhost:8080/api/productos/5
+
+###
+# POST http://localhost:8080/api/productos/
+# Content-Type: application/json
+
+# {
+#   "title": "Cornetas Gamerr",
+#   "price": "7900",
+#   "thumbnail": "https://mexx-img-2019.s3.amazonaws.com/37396_4.jpeg",
+#   "id": 5
+# }
+
+# ###
+# DELETE http://localhost:8080/api/productos/6
+
+# ###
+# PUT http://localhost:8080/api/productos/2
+
+# {
+#   "title": "Silla Gamer Daewoo",
+#   "price": "7900",
+#   "thumbnail": "https://www.lavoz.com.ar/resizer/dqVc7U87qN7ExIT1Mp1ECjB4khM=/1200x793/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/JEQFOFZHXVAG7HGFJOVJN4MBSM.jpg",
+#   "id": 2
+# }

@@ -95,7 +95,7 @@ pathProducts.get('/:id', (req, res) => {
 pathProducts.post('/', (req,res) => {
     const producto = req.body;
     productos.save(producto);
-    res.send("ok");
+    res.send(`El producto se agrego correctamente`);
 });
 
 pathProducts.put('/:id', (req,res) => {
@@ -112,12 +112,13 @@ pathProducts.put('/:id', (req,res) => {
 pathProducts.delete('/:id', (req,res) => {
     const id = parseInt(req.params.id)
     productos.deleteById(id)
+    res.send(`El producto se elimino con exito`)
 })
 
 app.use('/api/productos', pathProducts)
 
 const server = app.listen(PORT, () => {
-    console.log(`Server on port ${server.address().port}`)
+    console.log(`Server on port ${PORT}`)
 })
 
 server.on('error', error => console.log(`Ha ocurrido un error: ${error}`))
