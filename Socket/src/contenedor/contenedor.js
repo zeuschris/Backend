@@ -1,63 +1,65 @@
-const fs = require('fs');
-
 class Contenedor {
-  constructor(nombre) {
-    this.nombre = nombre;
+  constructor(productos) {
+    this.productos = productos
   }
 
-  async save(objeto) {
-    const archivo = await fs.promises.readFile(this.nombre, 'utf-8');
-    const archivoParseado = JSON.parse(archivo);
-    let id = 1;
-    archivoParseado.forEach((element, index) => {
+  save(objeto) {
+
+    if (objeto.id) {
+      this.productos.push(objeto)
+      return objeto.id
+    }
+
+    let id = 1
+    this.productos.forEach((element, index) => {
       if (element.id >= id) {
-        id = element.id + 1;
+        id = element.id + 1
       }
-    });
-    objeto.id = id;
-    archivoParseado.push(objeto);
-    await fs.promises.writeFile(this.nombre, JSON.stringify(archivoParseado, null, 2));
-    return id;
+    })
+    objeto.id = id
+    this.productos.push(objeto)
+    return id
   }
 
-  async getById(id) {
-    const archivo = await fs.promises.readFile(this.nombre, 'utf-8');
-    const archivoParseado = JSON.parse(archivo);
-    let objetoSeleccionado = null;
-    archivoParseado.forEach(element => {
+  getById(id) {
+    let objetoSeleccionado = null
+    this.productos.forEach(element => {
       if (element.id == id) {
-        objetoSeleccionado = element;
+        objetoSeleccionado = element
       }
-    });
-    return objetoSeleccionado;
+    })
+    return objetoSeleccionado
   }
 
-  async getAll() {
-    const archivo = await fs.promises.readFile(this.nombre, 'utf-8');
-    const archivoParseado = JSON.parse(archivo);
-    return archivoParseado;
+  update(producto) {
+    this.productos = this.productos.map((element) => {
+      if (element.id == producto.id) {
+        return producto
+      }
+      return element
+    })
   }
 
-  async deleteById(id) {
-    const archivo = await fs.promises.readFile(this.nombre, 'utf-8');
-    const archivoParseado = JSON.parse(archivo);
-    let indexSeleccionado = -1;
-    archivoParseado.forEach((element, index) => {
+  getAll() {
+    return this.productos
+  }
+
+  deleteById(id) {
+    let indexSeleccionado = -1
+    this.productos.forEach((element, index) => {
       if (element.id == id) {
-        indexSeleccionado = index;
+        indexSeleccionado = index
       }
-    });
+    })
     if (indexSeleccionado != -1) {
-      archivoParseado.splice(indexSeleccionado, 1);
-      await fs.promises.writeFile(this.nombre, JSON.stringify(archivoParseado, null, 2));
+      this.productos.splice(indexSeleccionado, 1)
     }
     
   }
 
-  async deleteAll() {
-    const arregloVacio = [];
-    await fs.promises.writeFile(this.nombre, JSON.stringify(arregloVacio, null, 2));
+  deleteAll() {
+    this.productos = []
   }
 }
 
-module.exports = Contenedor;
+module.exports = Contenedor

@@ -4,41 +4,51 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="index.js"></script>
-  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <title>Product Form</title>
 </head>
 <body>
   <div>
-    <h1>Ingrese producto: </h1>
-    <form onsubmit="return addProduct(this)">
-      <label for="title">Titulo:</label>
-      <input type="text" id="title" name="title"><br><br>
-      <label for="price">Precio:</label>
-      <input type="text" id="price" name="price"><br><br>
-      <label for="thumbnail">Foto URL:</label>
-      <input type="text" id="thumbnail" name="thumbnail"><br><br>
-      <input type="submit" value="Enviar">
+    <header class="container-fluid bg-dark text-light">
+      <h1 class="mb-4 pt-3">Product Form ⚡</h1>
+      <form class="pb-5" onsubmit="return addProduct(this)">
+        <div class="form-group">
+          <label class="form-label" for="title" class="form-control">Name:</label>
+          <input type="text" id="title" name="title" placeholder="Type the name" class="form-control w-25" required><br><br>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="price" class="form-control">Price:</label>
+        <input type="text" id="price" name="price" placeholder="Type the price" class="form-control w-25" required><br><br>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="thumbnail" class="form-control">Image URL:</label>
+      <input type="text" id="thumbnail" name="thumbnail" placeholder="Type url of the image" class="form-control w-25" required><br><br>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary">
     </form>
-    <br>
+    </header>
 
-    <h2>Vista de Productos</h2>
-      <table id="productos">
-        <tr>
-          <th>Titulo</th>
-          <th>Precio</th>
-          <th>Foto</th>
-        </tr>
+    <h2 class="text-center alert alert-warning mb-0">List of products</h2>
+      <table id="productos" class="table table-striped table-hover text-center mb-0">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+          </tr>
+        </thead>
       </table>
       <br>
       <br>
-      <h2>Centro de Mensajes</h2>
+      <h2>Chat</h2>
       <form onsubmit="return addMessage(this)">
-        <input type="email" id="email" placeholder="Tu Email" >
-        <input type="text" id="texto" placeholder="Cuéntanos algo...">
-        <input type="submit" value="Enviar">
+        <input type="email" id="email" class="form-control w-50 my-3" placeholder="Email" >
+        <input type="text" id="texto" class="form-control w-50 my-3" placeholder="Write something...">
+        <input type="submit" value="Submit" class="btn btn-success">
       </form>
-      <div id="messages"></div>
+      <div id="messages" class="my-2"></div>
   </div>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="index.js" defer></script>
 </body>
 </html>

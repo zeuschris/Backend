@@ -1,20 +1,21 @@
 {
-  "name": "socket",
+  "name": "consigna",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "nodemon main.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/main.js"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.2.2",
+    "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "moment": "^2.29.4",
+    "pug": "^3.0.2",
     "socket.io": "^4.5.3"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
   }
 }

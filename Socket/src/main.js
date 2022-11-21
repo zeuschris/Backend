@@ -1,33 +1,39 @@
+//Servidor************
 const express = require('express')
 const moment = require('moment')
-const app = express()
+const aplicacion = express()
 const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
-const Contenedor = require('./contenedor/contenedorFs')
+const Contenedor = require('./contenedor/memoryfs')
+
 const port = 8080
 const publicRoot = './public'
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+aplicacion.use(express.json())
+aplicacion.use(express.urlencoded({ extended: true }))
 
-const httpServer = new HttpServer(app)
+const httpServer = new HttpServer(aplicacion)
 const io = new IOServer(httpServer)
 
-app.use(express.static(publicRoot))
+aplicacion.use(express.static(publicRoot))
 
 const productos = new Contenedor('./src/db/productos.txt')
 const mensajes = new Contenedor('./src/db/mensajes.txt')
 
-app.get('/', (peticion, respuesta) => {
+aplicacion.get('/', (peticion, respuesta) => {
   respuesta.send('index.html', { root: publicRoot })
 })
 
+
+//Servidor
 const servidor = httpServer.listen(port, () => {
   console.log(`Servidor escuchando: ${servidor.address().port}`)
 })
 
 servidor.on('error', error => console.log(`Error: ${error}`))
 
+
+//Sockets
 io.on('connection', async (socket) => {
   console.log('Nuevo cliente conectado!')
 
@@ -39,9 +45,11 @@ io.on('connection', async (socket) => {
     io.sockets.emit('producto', data)
   })
 
+  //Para enviar todos los mensajes en la primera conexion
   const listaMensajes = await mensajes.getAll()
   socket.emit('messages', listaMensajes)
 
+  //Evento para recibir nuevos mensajes
   socket.on('new-message', async data => {
     data.time = moment(new Date()).format('DD/MM/YYYY hh:mm:ss')
     await mensajes.save(data)
