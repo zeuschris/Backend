@@ -7,6 +7,15 @@ const routeProducts = express.Router()
 
 const products = new Contenedor('./src/db/products.txt')
 
+// Admin 
+const staff = (req,res,next) => {
+    let adm = req.headers.adm
+    if ( adm === true ) {
+        next()
+    }else{
+        res.status(401).send({error : -1, description: `rute ${req.url} is not autorized`})
+    }
+}
 
 // Endpoints
 routeProducts.get('/', async (req, res) => {
@@ -20,18 +29,18 @@ routeProducts.get('/:id', async (req, res) => {
     res.json(product)
 })
 
-routeProducts.post('/', async (req, res) => {
+routeProducts.post('/', staff, async (req, res) => {
   let product = await products.save()
   res.json(product)
 })
 
-routeProducts.put('/:id', async (req, res) => {
+routeProducts.put('/:id', staff, async (req, res) => {
   let id = req.params.id
   let product = await products.update(id)
   res.json(product)
 })
 
-routeProducts.delete('/:id', async (req, res) => {
+routeProducts.delete('/:id', staff, async (req, res) => {
   let id = req.params.id
   let product = await products.deleteById(id)
 })
