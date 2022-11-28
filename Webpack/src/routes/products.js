@@ -24,25 +24,28 @@ routeProducts.get('/', async (req, res) => {
 })
 
 routeProducts.get('/:id', async (req, res) => {
-    let id = req.params.id
+    const id = parseInt(req.params.id)
     let product = await products.getById(id)
     res.json(product)
 })
 
 routeProducts.post('/', staff, async (req, res) => {
-  let product = await products.save()
-  res.json(product)
+  let product = req.body
+  let newProduct = await products.save(product)
+  res.json(newProduct)
 })
 
 routeProducts.put('/:id', staff, async (req, res) => {
-  let id = req.params.id
-  let product = await products.update(id)
+  const id = parseInt(req.params.id)
+  const product = req.body;
+  await products.update(id, product);
   res.json(product)
 })
 
 routeProducts.delete('/:id', staff, async (req, res) => {
-  let id = req.params.id
+  const id = parseInt(req.params.id)
   let product = await products.deleteById(id)
+  res.send(`The product with id ${id} was remove.`)
 })
 
 export { routeProducts }
