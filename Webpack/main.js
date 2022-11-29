@@ -13,9 +13,16 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/products', routeProducts)
 app.use('/api/cart', routeCart)
 
+app.use((req,res,next) => {
+  if (!req.route){
+    res.status(404).send({error: -2, description: `the route ${req.url} was not found`})
+  }else{
+    next()
+  }
+})
 
 const servidor = app.listen(port, () => {
-  console.log(`Servidor escuchando: ${port}`)
+  console.log(`Server on port: ${port} listening...`)
 })
 
 servidor.on('error', error => console.log(`Error: ${error}`))

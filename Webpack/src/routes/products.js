@@ -1,10 +1,9 @@
-// Import modules
+// Import modules and Router
 import express from 'express'
 import { Contenedor } from '../contenedor/containerFs.js'
-
-// Route
 const routeProducts = express.Router()
 
+// Container products
 const products = new Contenedor('./src/db/products.txt')
 
 // Admin 

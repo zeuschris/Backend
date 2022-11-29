@@ -1,25 +1,28 @@
-[   
+[
   {
     "id": 1,
-    "timestamp": 1669656958914,                                                                                                                         
-    "products": [{                                                                                                        
-    "title": "Apple",
-    "description": "",
     "timestamp": 1669656958914,
-    "code": 159,                                                                                                                                 
-    "price": 200,  
-    "stock": 5,                                                                                                                                   
-    "photo": "https://cdn-icons-png.flaticon.com/128/415/415682.png",                                     
-    "id": 1                                                                                                                                              
-  },{
-    "title": "Kiwi",
-    "description": "",
-    "timestamp": 1669656958914,
-    "code": 159,                                                                                                                                 
-    "price": 200,  
-    "stock": 12,                                                                                                                                   
-    "photo": "https://cdn-icons-png.flaticon.com/128/415/415682.png",                                     
-    "id": 2
-    }]  
-  }                                                                                                                                                               
+    "products": [
+      {
+        "title": "Apple",
+        "description": "",
+        "timestamp": 1669656958914,
+        "code": 159,
+        "price": 200,
+        "stock": 5,
+        "photo": "https://cdn-icons-png.flaticon.com/128/415/415682.png",
+        "id": 1
+      },
+      {
+        "title": "Kiwi",
+        "description": "",
+        "timestamp": 1669656958914,
+        "code": 159,
+        "price": 200,
+        "stock": 12,
+        "photo": "https://cdn-icons-png.flaticon.com/128/415/415682.png",
+        "id": 2
+      }
+    ]
+  }
 ]

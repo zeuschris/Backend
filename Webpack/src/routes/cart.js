@@ -3,6 +3,8 @@ import { Contenedor } from '../contenedor/containerFs.js'
 const routeCart = express.Router()
 
 const carts = new Contenedor('./src/db/cart.txt')
+const products = new Contenedor('./src/db/products.txt')
+
 
 routeCart.get('/', async (req, res) => {
     const listCarts = await carts.getAll()
@@ -35,10 +37,10 @@ const cart = {
 routeCart.post('/:id/products', async (req, res) => {
     const idCart = parseInt(req.params.id)
     const idProduct = req.body.idProduct
-    const product = await carts.getById(idProduct)
+    const product = await products.getById(idProduct)
     const cart = await carts.getById(idCart)
-    cart.carts.push(product)
-    await carts.update(idCart, cart)
+    cart.products.push(product)
+    await products.update(idCart, carts)
     res.json({
       status: 'ok'
     })
@@ -49,15 +51,15 @@ routeCart.delete('/:id/products/:id_prod', async (req, res) => {
     const idProduct = parseInt(req.params.id_prod)
     const cart = await carts.getById(idCart)
     let indexToDelete = -1
-    cart.carts.forEach((product, index) => {
+    cart.products.forEach((product, index) => {
       if (product.id == idProduct) {
         indexToDelete = index
       }
     })
     if (indexToDelete => 0) {
-      cart.carts.splice(indexToDelete, 1)
+      carts.products.splice(indexToDelete, 1)
     }
-    await carts.update(idCart, cart)
+    await carts.update(idCart, carts)
     res.json({
       status: 'ok'
     })
