@@ -1,30 +1,60 @@
-import express from 'express'
-const app = express()
+//Servidor************
+const express = require('express')
+const moment = require('moment')
+const aplicacion = express()
+const { Server: HttpServer } = require('http')
+const { Server: IOServer } = require('socket.io')
+const Contenedor = require('./contenedor/contenedorSql');
+const options = require('./connection/options.js');
 
-// Routes
-import { routeProducts } from './src/routes/products.js'
-import { routeCart } from './src/routes/cart.js'
-import { Contenedor } from './src/contenedor/ContainerSql.js'
-import { options } from './src/connection/options.js'
+const port = 8080
+const publicRoot = './public'
 
-const port = process.env.port || 8080
+aplicacion.use(express.json())
+aplicacion.use(express.urlencoded({ extended: true }))
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+const httpServer = new HttpServer(aplicacion)
+const io = new IOServer(httpServer)
 
-app.use('/api/products', routeProducts)
-app.use('/api/cart', routeCart)
+aplicacion.use(express.static(publicRoot))
 
-app.use((req,res,next) => {
-  if (!req.route){
-    res.status(404).send({error: -2, description: `the route ${req.url} was not found`})
-  }else{
-    next()
-  }
+const productos = new Contenedor(options.mysql, 'productos')
+const mensajes = new Contenedor(options.sqlite3, 'mensajes')
+
+aplicacion.get('/', (peticion, respuesta) => {
+  respuesta.send('index.html', { root: publicRoot })
 })
 
-const servidor = app.listen(port, () => {
-  console.log(`Server on port: ${port} listening...`)
+
+//Servidor
+const servidor = httpServer.listen(port, () => {
+  console.log(`Servidor escuchando: ${servidor.address().port}`)
 })
 
 servidor.on('error', error => console.log(`Error: ${error}`))
+
+
+//Sockets
+io.on('connection', async (socket) => {
+  console.log('Nuevo cliente conectado!')
+
+  const listaProductos = await productos.getAll()
+  socket.emit('nueva-conexion', listaProductos)
+
+  socket.on("new-product", (data) => {
+    productos.save(data)
+    io.sockets.emit('producto', data)
+  })
+
+  //Para enviar todos los mensajes en la primera conexion
+  const listaMensajes = await mensajes.getAll()
+  socket.emit('messages', listaMensajes)
+
+  //Evento para recibir nuevos mensajes
+  socket.on('new-message', async data => {
+    data.time = moment(new Date()).format('DD/MM/YYYY hh:mm:ss')
+    await mensajes.save(data)
+    const listaMensajes = await mensajes.getAll()
+    io.sockets.emit('messages', listaMensajes)
+  })
+})
