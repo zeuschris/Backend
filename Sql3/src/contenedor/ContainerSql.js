@@ -1,6 +1,6 @@
-import * as knex from 'knex'
+const knex = require('knex')
 
-export class Contenedor {
+ class Contenedor {
   constructor(options, table) {
     this.connection = knex(options)
     this.table = table
@@ -27,3 +27,5 @@ export class Contenedor {
     await this.connection(this.table).del()
   }
 }
+
+module.exports = Contenedor

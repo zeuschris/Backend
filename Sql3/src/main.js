@@ -4,8 +4,9 @@ const moment = require('moment')
 const aplicacion = express()
 const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
-const Contenedor = require('./contenedor/contenedorSql');
+const Contenedor = require('./contenedor/ContainerSql.js');
 const options = require('./connection/options.js');
+import { mysqlFunc, sqlite3Func } from "./connection/createdb.js"
 
 const port = 8080
 const publicRoot = './public'
@@ -18,8 +19,12 @@ const io = new IOServer(httpServer)
 
 aplicacion.use(express.static(publicRoot))
 
-const productos = new Contenedor(options.mysql, 'productos')
-const mensajes = new Contenedor(options.sqlite3, 'mensajes')
+const productos = new Contenedor(options.mysql, 'productos');
+const mensajes = new Contenedor(options.sqlite3, 'mensajes');
+
+mysqlFunc()
+sqlite3Func()
+
 
 aplicacion.get('/', (peticion, respuesta) => {
   respuesta.send('index.html', { root: publicRoot })
