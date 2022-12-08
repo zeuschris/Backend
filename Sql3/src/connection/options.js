@@ -1,4 +1,4 @@
-const options = {
+export const options = {
     mysql: {
       client: 'mysql',
       connection: {
@@ -19,4 +19,3 @@ const options = {
     }
   };
   
-  module.exports = options;

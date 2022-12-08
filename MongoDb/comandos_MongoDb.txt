@@ -1,0 +1,201 @@
+// creando db
+use ecommerce;
+
+// creando colecciones
+db.createCollection('productos');
+db.createCollection('mensajes');
+
+// productos
+
+db.productos.insertMany([
+    {
+        "timestamp": 1669634958914,                       1                                                                                 
+        "title": "Apple",                                                                                                                                 
+        "price": 200,                                                                                                                                     
+        "thumbnail": "https://cdn-icons-png.flaticon.com/128/415/415682.png",    
+        "description": "logo of an apple"                                                                                                                                                                            
+    },                                                                                                                                                   
+    {
+        "timestamp": 1669634958532,                                                                                                        
+        "title": "Pc Gamer",                                                                                                                                 
+        "price": 800,                                                                                                                                    
+        "thumbnail": "https://cdn-icons-png.flaticon.com/128/2734/2734728.png",    
+        "description": "PC Gamer 2tb 32gb ram"                                                                                                                                                                            
+    },                                                                                                                                                   
+    {
+        "timestamp": 1669634958532,                                                                                                        
+        "title": "Iphone 14 Pro",                                                                                                                                 
+        "price": 1300,                                                                                                                                   
+        "thumbnail": "https://cdn-icons-png.flaticon.com/128/3291/3291227.png",    
+        "description": "Iphone 14 at its best"                                                                                                                                                                            
+    },                                                                                                                                                   
+    {
+        "timestamp": 1669434976252,                                                                                                        
+        "title": "Christmas Tree",                                                                                                                                 
+        "price": 100,                                                                                                                                   
+        "thumbnail": "https://cdn-icons-png.flaticon.com/128/9075/9075415.png",    
+        "description": "Tree"                                                                                                                                                                            
+    },                                                                                                                                                   
+    {
+        "timestamp": 1669434954332,                                                                                                        
+        "title": "BMW Serie 4",                                                                                                                                 
+        "price": 50000,                                                                                                                                     
+        "thumbnail": "https://t4.ftcdn.net/jpg/05/05/80/61/240_F_505806197_NAgbTqm0fsquDMDXE6oFxsK0QeO95mc0.jpg",    
+        "description": "BMW Coupe"                                                                                                                                                                            
+    },                                                                                                                                                   
+    {
+        "timestamp": 1669534454122,                                                                                                        
+        "title": "Ferrari",                                                                                                                                 
+        "price": 170000,                                                                                                                                    
+        "thumbnail": "https://cdn-icons-png.flaticon.com/128/68/68321.png",    
+        "description": "Super sports car"                                                                                                                                                                            
+    },                                                                                                                                                   
+    {
+        "timestamp": 1662334954232,                                                                                                        
+        "title": "Bicicleta Spx",                                                                                                                                 
+        "price": 300,                                                                                                                                  
+        "thumbnail": "https://cdn-icons-png.flaticon.com/128/3148/3148938.png",    
+        "description": "Bicicleta Spx 29"                                                                                                                                                                            
+    },                                                                                                                                                   
+    {
+        "timestamp": 1662334943212,                                                                                                        
+        "title": "Tv 70 pulgadas",                                                                                                                                 
+        "price": 1000,                                                                                                                                   
+        "thumbnail": "https://cdn-icons-png.flaticon.com/128/501/501921.png",    
+        "description": "70 inch 4k TV"                                                                                                                                                                            
+    }, 
+    {
+        "timestamp": 1662334342432,                                                                                                        
+        "title": "Reloj Rolex",                                                                                                                                 
+        "price": 50000,                                                                                                                                   
+        "thumbnail": "https://cdn-icons-png.flaticon.com/128/2972/2972531.png",    
+        "description": "Rolex of Gold"                                                                                                                                                                            
+    },                                                                                                                                                   
+    {    
+        "timestamp": 1469656428914,                                                                                                                                                
+        "title": "Diamont",                                                                                                                              
+        "price": 999,                                                                                                                                   
+        "thumbnail": "https://cdn-icons-png.flaticon.com/128/254/254232.png",   
+        "description": "Diamond logo"                                                                                                                                                                                         
+    }   
+]);
+
+// mensajes
+
+db.mensajes.insertMany([
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+    {
+        "email": "chris@gmail.com",
+        "message": 'write a message...'
+    },
+]);
+
+// listar los documentos de las colecciones
+
+show collections;
+
+db.productos.find();
+db.mensajes.find();
+
+// cantidad de documentos de las colecciones
+
+db.productos.countDocuments();
+db.mensajes.countDocuments();
+
+// Agregando un producto en la coleccion productos
+
+db.productos.insertOne(
+    {    
+    "timestamp": 1469656423914,                                                                                                                                                
+    "title": "Ps5",                                                                                                                              
+    "price": 1000,
+    "stock": 30,                                                                                                                                     
+    "thumbnail": "https://cdn-icons-png.flaticon.com/128/65/65877.png",   
+    "description": "PS5 1TB"                                                                                                                                                                                         
+  }  
+);
+
+// consultar el nombre de un producto
+
+db.productos.find({title: "Ferrari"});
+
+// listar los productos con precio menor a 1000
+
+db.productos.find({precio: {$lt: 1000}})
+
+//Listar los productos con precio entre los 1000 a 3000
+
+db.productos.find({precio: {$in: [1000, 3000]}});
+
+// Listar los productos con precio mayor a 3000
+
+db.productos.find({precio: {$gt: 3000}});
+
+// Realizar una consulta que traiga solo el nombre del tercer productos mas barato
+db.productos.find().sort({precio: 1}).skip(2).limit(1);
+
+//Hacer una actualizacion sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100
+db.productos.updateMany({}, {$inc: {stock: 100}});
+
+// Cambiar el stock a cero de los productos con precios mayores a 4000
+db.productos.updateMany({precio: {$gt: 4000}}, {$set: {stock: 0}});
+
+// Borrar los productos con un precio menor a 1000
+db.productos.deleteMany({precio: {$lt: 1000}});
+
+//Crear un usuario 'pepe' clave: 'asd456' que solo pueda leer la base de datos ecommerce
+
+db.createUser
+
+(
+    {
+        user: "pepe",
+        pwd: "asd456",
+        roles: [{role: "read", db: "ecommerce"}]
+    }
+);
+
+// Agregando un producto
+db.productos.insertOne({
+    "timestamp": 1669867800965,
+    "title": "PUBG",
+    "price": 3670,
+    "description": "Description here",
+    "code": "Game-12",
+    "image": "urlgame"
+});

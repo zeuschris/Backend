@@ -1,26 +1,29 @@
 //Servidor************
-const express = require('express')
-const moment = require('moment')
+import express from "express"
+import moment from "moment"
 const aplicacion = express()
-const { Server: HttpServer } = require('http')
-const { Server: IOServer } = require('socket.io')
-const Contenedor = require('./contenedor/ContainerSql.js');
-const options = require('./connection/options.js');
+import { Server } from "socket.io"
+import http from "http"
+import { Contenedor } from './contenedor/ContainerSql.js'
+import { options } from "./connection/options.js"
 import { mysqlFunc, sqlite3Func } from "./connection/createdb.js"
 
 const port = 8080
 const publicRoot = './public'
-
 aplicacion.use(express.json())
 aplicacion.use(express.urlencoded({ extended: true }))
 
-const httpServer = new HttpServer(aplicacion)
+const httpServer = new Server(aplicacion)
 const io = new IOServer(httpServer)
 
 aplicacion.use(express.static(publicRoot))
 
-const productos = new Contenedor(options.mysql, 'productos');
-const mensajes = new Contenedor(options.sqlite3, 'mensajes');
+import knex from "knex"
+const connectionMySql = knex(options.mysql)
+const connectionSqlite3 = knex(options.sqlite3)
+
+const productos = new Contenedor(connectionMySql, 'productos');
+const mensajes = new Contenedor(connectionSqlite3, 'mensajes');
 
 mysqlFunc()
 sqlite3Func()

@@ -1,4 +1,4 @@
-const options = require('./connection/options.js');
+import { options } from "./options.js"
 import knex from "knex"
 const connectionMySql = knex(options.mysql)
 const connectionSqlite3 = knex(options.sqlite3)
