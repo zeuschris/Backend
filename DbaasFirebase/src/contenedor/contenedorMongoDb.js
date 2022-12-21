@@ -1,68 +1,48 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
+import config from '../config.js';
 
-await mongoose.connect(url, options)
+await mongoose.set('strictQuery', true);
+await mongoose.connect(config.mongodb.url);
 
 export class Contenedor {
-    constructor(productos) {
-      this.productos = productos
-    }
-  
-    save(objeto) {
-  
-      if (objeto.id) {
-        this.productos.push(objeto)
-        return objeto.id
-      }
-  
-      let id = 1
-      this.productos.forEach((element, index) => {
-        if (element.id >= id) {
-          id = element.id + 1
-        }
-      })
-      objeto.id = id
-      this.productos.push(objeto)
-      return id
-    }
-  
-    getById(id) {
-      let objetoSeleccionado = null
-      this.productos.forEach(element => {
-        if (element.id == id) {
-          objetoSeleccionado = element
-        }
-      })
-      return objetoSeleccionado
-    }
-  
-    update(producto) {
-      this.productos = this.productos.map((element) => {
-        if (element.id == producto.id) {
-          return producto
-        }
-        return element
-      })
-    }
-  
-    getAll() {
-      return this.productos
-    }
-  
-    deleteById(id) {
-      let indexSeleccionado = -1
-      this.productos.forEach((element, index) => {
-        if (element.id == id) {
-          indexSeleccionado = index
-        }
-      })
-      if (indexSeleccionado != -1) {
-        this.productos.splice(indexSeleccionado, 1)
-      }
-      
-    }
-  
-    deleteAll() {
-      this.productos = []
-    }
+  constructor(nombreColeccion, esquema) {
+    this.collection = mongoose.model(nombreColeccion, esquema);
   }
-  
+
+  async save(objeto) {
+    let doc = await this.collection.create(objeto);
+    doc.id = doc._id;
+    return doc.id;
+  }
+
+  async getById(id) {
+    const doc = await this.collection.findOne({'_id': id});
+    if (doc) {
+      doc.id = doc._id; 
+      return doc;
+    }
+    return null;
+  }
+
+  async update(objeto) {
+    console.log(objeto);
+    await this.collection.updateOne({'_id': objeto.id}, { $set: { ...objeto } });
+  }
+
+  async getAll() {
+    let docs = await this.collection.find({});
+    docs = docs.map(item => {
+      item.id = item._id;
+      return item;
+    });
+    return docs;
+  }
+
+  async deleteById(id) {
+    await this.collection.deleteOne({'_id': id});
+  }
+
+  deleteAll() {
+    this.productos = [];
+  }
+}

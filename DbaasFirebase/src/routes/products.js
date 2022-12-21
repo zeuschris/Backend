@@ -1,10 +1,7 @@
 // Import modules and Router
 import express from 'express'
-import Contenedor from '../daos/productos/productosDaoFs.js'
+import { products } from '../daos/index.js';
 const routeProducts = express.Router()
-
-// Container products
-const products = new Contenedor()
 
 // Admin 
 const staff = (req,res,next) => {

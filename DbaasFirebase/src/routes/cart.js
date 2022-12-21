@@ -1,11 +1,6 @@
 import express from 'express'
-import ContenedorProductos from '../daos/productos/productosDaoFs.js'
-import ContenedorCarritos from '../daos/carritos/carritosDaoFs.js'
+import { products, carts } from '../daos/index.js';
 const routeCart = express.Router()
-
-const carts = new ContenedorCarritos()
-const products = new ContenedorProductos()
-
 
 routeCart.get('/', async (req, res) => {
     const listCarts = await carts.getAll()
