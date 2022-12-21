@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "nodemon src/main.js"
+    "start": "DB=mongodb nodemon src/main.js "
   },
   "keywords": [],
   "author": "",
